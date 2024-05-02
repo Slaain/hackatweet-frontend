@@ -1,11 +1,14 @@
 import styles from '../styles/Home.module.css';
+import LastTweets from './LastTweets'
+import { Provider } from 'react-redux';
+
 
 function Home() {
   return (
     <div>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          <LastTweets />
         </h1>
       </main>
     </div>
