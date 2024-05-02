@@ -1,103 +1,94 @@
 import { useEffect, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../reducers/user';
 import { Button, Modal } from 'antd';
-import Link from 'next/link';
-// import Moment from 'react-moment';
 import styles from '../styles/Accueil.module.css';
-import { useDispatch,useSelector } from 'react-redux';
 
 function Accueil() {
     const dispatch = useDispatch();
-    const user = useSelector((state)=> state.user.value);
-    console.log(user); 
+    const user = useSelector((state) => state.user.value);
 
-const [isModalOpen, setIsModalOpen] = useState(false);
-const [signUpFirstname, setSignUpFirstname] = useState('');
-const [signUpUsername, setSignUpUsername] = useState('');
-const [signUpPassword, setSignUpPassword] = useState('');
+    const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+    const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+    const [signUpFirstname, setSignUpFirstname] = useState('');
+    const [signUpUsername, setSignUpUsername] = useState('');
+    const [signUpPassword, setSignUpPassword] = useState('');
+    const [signInUsername, setSignInUsername] = useState('');
+    const [signInPassword, setSignInPassword] = useState('');
 
-const registers = () => {
-    fetch('http://localhost:3000/users/signup', {
-        method: 'POST',
-        headers : { 'Content-Type': 'application/json' },
-        body: JSON.stringify({firstname:signUpFirstname, username:signUpUsername, password:signUpPassword }),
-    }).then(response => response.json ())
-      .then(data => {
-        console.log(data)
-        if(data.result){
-            dispatch(login({firstname:signUpFirstname, username:signUpUsername })) ;
-            setSignUpFirstname();
-            setSignUpUsername();
-            setSignUpPassword();
-            setIsModalVisible(false);   
-        }
-      })
+    const registerUser = () => {
+        fetch('http://localhost:3000/users/signups', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ firstname: signUpFirstname, username: signUpUsername, password: signUpPassword }),
+        }).then(response => response.json())
+            .then(data => {
+                if (data.result) {
+                    dispatch(login({ firstname: signUpFirstname, username: signUpUsername }));
+                    setSignUpFirstname('');
+                    setSignUpUsername('');
+                    setSignUpPassword('');
+                    setIsSignUpModalOpen(false);
+                    console.log('vous etes inscrit');
+                }
+            });
+    };
+
+    const signInUser = () => {
+        fetch('http://localhost:3000/users/signins', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: signInUsername, password: signInPassword }),
+        }).then(response => response.json())
+            .then(data => {
+                if (data.result) {
+                    dispatch(login({ username: signInUsername, token: data.token }));
+                    setSignInUsername('');
+                    setSignInPassword('');
+                    setIsSignInModalOpen(false);
+                    console.log('vous etes connecté');
+                }
+            });
+    };
+
+    const showSignUpModal = () => {
+        setIsSignUpModalOpen(true);
+    };
+
+    const showSignInModal = () => {
+        setIsSignInModalOpen(true);
+    };
+
+    const handleSignUpCancel = () => {
+        setIsSignUpModalOpen(false);
+    };
+
+    const handleSignInCancel = () => {
+        setIsSignInModalOpen(false);
+    };
+
+    return (
+        <>
+        <div className={styles.containerB}>
+            <Button type="primary" onClick={showSignUpModal} className={styles.signIn}>Sign Up</Button>
+            <p>Already have an account?</p>
+            <Button type="primary" onClick={showSignInModal} className={styles.signIn}>Sign In</Button>
+      </div>    
+            <Modal visible={isSignUpModalOpen} onCancel={handleSignUpCancel} footer={null}>
+                <input type="text" placeholder="Firstname" value={signUpFirstname} onChange={(e) => setSignUpFirstname(e.target.value)} />
+                <input type="text" placeholder="Username" value={signUpUsername} onChange={(e) => setSignUpUsername(e.target.value)} />
+                <input type="password" placeholder="Password" value={signUpPassword} onChange={(e) => setSignUpPassword(e.target.value)} />
+                <Button type="primary" onClick={registerUser}>Register</Button>
+            </Modal>
+          
+            <Modal visible={isSignInModalOpen} onCancel={handleSignInCancel} footer={null} >
+                <input type="text" placeholder="Username" value={signInUsername} onChange={(e) => setSignInUsername(e.target.value)} />
+                <input type="password" placeholder="Password" value={signInPassword} onChange={(e) => setSignInPassword(e.target.value)} />
+                <Button type="primary" onClick={signInUser}>Sign In</Button>
+            </Modal>
+            
+        </>
+    );
 }
-
-const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
-let modalContent;
-if(!user.token){
-  modalContent=(
-    <div className={styles.registerContainer}>
-            <div className={styles.registerSection}>
-    <Button type="primary" onClick={showModal}>
-        Sign Up
-      </Button>
-      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-      <input type="text" placeholder="Firstname" id="signUpFirstname" onChange={(e) => setSignUpFirstname(e.target.value)} value={signUpFirstname} />
-      <input type="text" placeholder="Username" id="signUpUsername" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername} />
-      <input type="password" placeholder="Password" id="signUpPassword" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
-      <button id="register" onClick={() => registers()}>Register</button>  
-      
-      </Modal>
-      </div>
-      </div>
-  )
-}
-  
-// let Modal:
-// if(!user.token){
-//     modalContent=(
-//         <div className={styles.registerContainer}>
-//             <div className={styles.registerSection}>
-//             <Button type="primary" onClick={showModal}>
-//         Open Modal
-//       </Button>
-//       <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-//         <p>Some contents...</p>
-//         <p>Some contents...</p>
-//         <p>Some contents...</p>
-//       </Modal>
-                /* <p>Sign-up</p>
-                <input type="text" placeholder="Firstname" id="signUpFirstname" onChange={(e) => setSignUpFirstname(e.target.value)} value={signUpFirstname} />
-        <input type="text" placeholder="Username" id="signUpUsername" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername} />
-          <input type="password" placeholder="Password" id="signUpPassword" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
-          <button id="register" onClick={() => registers()}>Register</button>       */
-            /* </div>
-        </div>
-    )
-} */
-return (
-    <>
-      
-      {setIsModalOpen && <div id="react-modals">
-        <Modal getContainer="#react-modals" className={styles.modal} visible={setIsModalOpen} closable={true} footer={null}>
-          {modalContent}
-        </Modal>
-      </div>}
-    </>
-  );
-}
-
 
 export default Accueil;
