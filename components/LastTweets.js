@@ -16,7 +16,7 @@ function LastTweets() {
     console.log(tweetsData)
 
     const tweets = tweetsData.map((tweet, i) => {
-        return(<Tweet key={i} /*author={tweet.author}*/ content={tweet.content} created_at={tweet.created_at}/>)
+        return(<Tweet key={i} author={tweet.author} content={tweet.content} created_at={tweet.created_at}/>)
     })
 
     return(
