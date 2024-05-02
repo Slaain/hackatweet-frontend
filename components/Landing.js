@@ -1,8 +1,8 @@
-import Accueil from './Accueil';;
-import styles from '../styles/Home.module.css'
+import Accueil from './Accueil';
+import styles from '../styles/Landing.module.css'
 import 'antd/dist/antd.variable.min.css';
 import Image from 'next/image';
-function Home () {
+function Landing () {
 
   return (
     <>
@@ -33,4 +33,4 @@ function Home () {
   );
 };
 
-export default Home;
+export default Landing;
