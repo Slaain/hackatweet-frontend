@@ -29,7 +29,7 @@ function Accueil() {
                     setSignUpUsername('');
                     setSignUpPassword('');
                     setIsSignUpModalOpen(false);
-                    console.log('vous etes inscrit');
+                    window.location.href = '/home';
                 }
             });
     };
