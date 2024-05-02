@@ -1,9 +1,10 @@
 import '../styles/globals.css';
 import Head from 'next/head';
+import { Provider } from 'react-redux';
+import user from '../reducers/user';
 
 
 // redux imports
-import { Provider } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from '../reducers/user';
 //persist imports 
@@ -24,16 +25,10 @@ const store = configureStore({
 function App({ Component, pageProps }) {
   return (
     <>
-    <Provider store={store}>
- <PersistGate persistor={persistor}>
-
       <Head>
         <title>Next.js App</title>
       </Head>
       <Component {...pageProps} />
-  </PersistGate>
-
-</Provider>
     </>
   );
 }
