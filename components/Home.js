@@ -7,7 +7,7 @@ function Home () {
   return (
     <>
     <div className={styles.container}>
-      <div className={styles.contenantright}>
+ <div className={styles.contenantright}>
       
       <Image src='/logo.png'
        alt="Logo"
@@ -25,6 +25,9 @@ function Home () {
     <Accueil/>
     
     </div>
+    <div className={styles.contenantleft}>
+ 
+      </div>  
     </div>
     </>
   );

@@ -18,8 +18,13 @@
   
 .titre{
   margin-left: 5%;
-  font-size: 4.5rem !important;
+  font-size: 4rem !important;
   margin-top: 1vh;
+  color: white;
+  display: block;
+}
+.soustitre{
+  font-size: 2rem !important;
   color: white;
   display: block;
 }
@@ -31,6 +36,17 @@
   color: white;
   background-color: rgb(20, 5, 41);
 }
+.contenantleft{
+  grid-row-start: 1;
+  grid-row-end: 6;
+  grid-column-start: 1;
+  grid-column-end: 6;
+  color: white;
+  background-image: url('../public/landingimage.jpg');
+  background-size:cover;
+  background-position: center;
+}
+
 
 
 

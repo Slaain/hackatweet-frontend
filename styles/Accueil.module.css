@@ -1,7 +1,13 @@
 .signIn{
     display: block !important;
-    width: 40%;
-    border-radius: 50px;
+    width: 25%;
+    border-radius: 50px !important;
+}
+.signUp{
+    display: block !important;
+    width: 25%;
+
+    border-radius: 50px !important;
 }
 .containerB{
     margin-left: 5%;

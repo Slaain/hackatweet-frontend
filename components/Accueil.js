@@ -72,7 +72,7 @@ function Accueil() {
         <div className={styles.containerB}>
             <Button type="primary" onClick={showSignUpModal} className={styles.signIn}>Sign Up</Button>
             <p>Already have an account?</p>
-            <Button type="primary" onClick={showSignInModal} className={styles.signIn}>Sign In</Button>
+            <Button type="primary" onClick={showSignInModal} className={styles.signUp}>Sign In</Button>
       </div>    
             <Modal visible={isSignUpModalOpen} onCancel={handleSignUpCancel} footer={null}>
                 <input type="text" placeholder="Firstname" value={signUpFirstname} onChange={(e) => setSignUpFirstname(e.target.value)} />
