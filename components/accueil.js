@@ -16,6 +16,7 @@ function Accueil() {
     const [signInUsername, setSignInUsername] = useState('');
     const [signInPassword, setSignInPassword] = useState('');
 
+    
     const registerUser = () => {
         fetch('http://localhost:3000/users/signups', {
             method: 'POST',
