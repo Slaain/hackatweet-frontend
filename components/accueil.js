@@ -20,7 +20,7 @@ function Accueil() {
     const [errorMessage, setErrorMessage] = useState('');
 
     
-    const registerUser = (setErrorMessage) => {
+    const registerUser = () => {
         fetch('http://localhost:3000/users/signups', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -87,7 +87,7 @@ function Accueil() {
                 <input type="text" className={styles.champs} placeholder="Firstname" value={signUpFirstname} onChange={(e) => setSignUpFirstname(e.target.value)} />
                 <input type="text" className={styles.champs} placeholder="Username" value={signUpUsername} onChange={(e) => setSignUpUsername(e.target.value)} />
                 <input type="password" className={styles.champs} placeholder="Password" value={signUpPassword} onChange={(e) => setSignUpPassword(e.target.value)} />
-                <Button type="primary" className={styles.buttonzz} onClick={registerUser((setErrorMessage))} value={errorMessage}>Register</Button>
+                <Button type="primary" className={styles.buttonzz} onClick={() => registerUser()}>Register</Button>
             </Modal>
     
             <Modal visible={isSignInModalOpen} onCancel={handleSignInCancel} footer={null} >
