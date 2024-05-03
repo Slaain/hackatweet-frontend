@@ -12,3 +12,16 @@
 .containerB{
     margin-left: 5%;
 }
+.ant-modal-content{
+    background-color:#010b32 !important;
+}
+.champs{
+    display: block;
+    margin-top: 2% ;
+        height: 59px;
+        width: 236px;
+  }
+.buttonzz{
+    display: block;
+    margin-top: 2% ;
+}

@@ -3,7 +3,7 @@ import LastTweets from './LastTweets'
 import { Provider } from 'react-redux';
 
 
-function Home() {
+function Homes() {
   return (
     <div>
       <main className={styles.main}>
@@ -15,4 +15,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Homes;
