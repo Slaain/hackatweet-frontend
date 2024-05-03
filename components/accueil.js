@@ -54,7 +54,7 @@ function Accueil() {
                     setSignInUsername('');
                     setSignInPassword('');
                     setIsSignInModalOpen(false);
-                    // router.push('/home')
+                    router.push('/home')
                     console.log('vous etes connecté');
                 }
             });
@@ -93,7 +93,7 @@ function Accueil() {
             <Modal visible={isSignInModalOpen} onCancel={handleSignInCancel} footer={null} >
                 <input type="text" placeholder="Username" value={signInUsername} className={styles.champs} onChange={(e) => setSignInUsername(e.target.value)} />
                 <input type="password" placeholder="Password" value={signInPassword} className={styles.champs} onChange={(e) => setSignInPassword(e.target.value)} />
-                <Button type="primary" onClick={() =>signInUser}>Sign In</Button>
+                <Button type="primary" onClick={() =>signInUser()}>Sign In</Button>
             </Modal>
             
         </>

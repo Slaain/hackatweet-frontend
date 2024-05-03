@@ -18,7 +18,7 @@ return(
         <p>{props.content}</p>
     </div>
     <div class="tweetActions">
-        <LikeButton /> {user.username === props.author.username && <DeleteButton /> }
+        <LikeButton /> {user.username === props.author.username && <DeleteButton _id={props._id} loadTweets={props.loadTweets}/> }
     </div>
 </div>
 )
