@@ -1,13 +1,13 @@
 import styles from '../styles/Home.module.css';
-import Homes from '../components/Home'
+import Home from '../components/Home'
 
 
-function Home() {
+function home() {
   return (
 <div>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          <Homes />
+          <Home />
         </h1>
       </main>
     </div>
@@ -15,5 +15,5 @@ function Home() {
 
   )}
 
-    export default Home;
+    export default home;
     
