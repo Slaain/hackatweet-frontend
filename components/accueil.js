@@ -54,7 +54,7 @@ function Accueil() {
                     setSignInUsername('');
                     setSignInPassword('');
                     setIsSignInModalOpen(false);
-                    router.push('/home')
+                    // router.push('/home')
                     console.log('vous etes connecté');
                 }
             });
