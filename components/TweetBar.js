@@ -1,5 +1,6 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addTweet } from '../reducers/tweets';
+import { useState } from 'react';
 
 function TweetBar() {
     const dispatch = useDispatch();
@@ -14,6 +15,10 @@ function TweetBar() {
     }
 
     const handleSubmit = () => {
+        const data = {
+            token: '4vL6wNRPRaUcZtl72jZ3iN3nRrmk8WW-',
+            content: tweet
+        }
         fetch('http://localhost:3000/tweets', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
