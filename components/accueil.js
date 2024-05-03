@@ -20,7 +20,7 @@ function Accueil() {
     const [errorMessage, setErrorMessage] = useState('');
 
     
-    const registerUser = () => {
+    const registerUser = (setErrorMessage) => {
         fetch('http://localhost:3000/users/signups', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
