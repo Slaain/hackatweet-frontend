@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 function Tweet(props) {
 
 const user = useSelector((state) => state.user.value)
+console.log(props);
 
 return(
 <div class="tweet">

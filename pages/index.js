@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Landing from '../components/Landing';
+<<<<<<< HEAD
 import Home from '../components/Home';
 
 function Index() {
@@ -21,6 +22,12 @@ function Index() {
   // return (
   //   <Landing />
   // )
+=======
+import Home from '../components/Home'
+
+function Index() {
+  return <Home />;
+>>>>>>> addTweet
 }
 
 export default Index;

@@ -1,19 +1,24 @@
-import { useEffect, useState } from 'react';
+//import { useEffect, useState } from 'react';
 import Tweet from './Tweet'
+import { useDispatch, useSelector } from 'react-redux';
+import { setTweets } from '../reducers/tweets';
+import { useEffect, useState } from 'react';
 
-function LastTweets() {
 
-    const [tweetsData, setTweetsData] = useState([]);
+const LastTweets = (props) => {
+    const dispatch = useDispatch();
+    const [error, setError] = useState('');
 
+    const test = async () => {
+        await props.loadTweets()
+    }
     useEffect(() => {
-        fetch('http://localhost:3000/tweets')
-        .then(response => response.json())
-        .then(data => {
-            setTweetsData(data.data)
-        })
-    }, []);
+        test()
+    }, [])
+    //await props.loadTweets()
+    let tweetsData = useSelector((state) => state.tweets.value)
+    tweetsData = [...tweetsData].sort((x, y) => Date.parse(y.created_at) - Date.parse(x.created_at))
 
-    console.log(tweetsData)
 
     const tweets = tweetsData.map((tweet, i) => {
         return(<Tweet key={i} author={tweet.author} content={tweet.content} created_at={tweet.created_at}/>)
@@ -21,6 +26,7 @@ function LastTweets() {
 
     return(
         <>
+        {error}
         {tweets}
         </>
     )
