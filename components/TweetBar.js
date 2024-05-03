@@ -5,10 +5,12 @@ function TweetBar(props) {
     const dispatch = useDispatch();
     const [tweet, setTweet] = useState('');
     const [error, setError] = useState('');
+    const user = useSelector((state) => state.user.value);
+
 
     const handleSubmit = () => {
         const data = {
-            token: '4vL6wNRPRaUcZtl72jZ3iN3nRrmk8WW-',
+            token: user.token,
             content: tweet
         }
         fetch('http://localhost:3000/tweets', {
