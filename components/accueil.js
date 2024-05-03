@@ -57,6 +57,7 @@ function Accueil() {
                     router.push('/home')
                     console.log('vous etes connecté');
                 }
+                
             });
     };
 
