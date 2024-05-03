@@ -7,9 +7,9 @@ function Home() {
   return (
     <div>
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        <h1 className={styles.title}>Home</h1>
+          <TweetBar />
           <LastTweets />
-        </h1>
       </main>
     </div>
   );

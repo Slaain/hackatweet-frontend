@@ -1,15 +1,24 @@
-import { useEffect, useState } from 'react';
+//import { useEffect, useState } from 'react';
 import Tweet from './Tweet'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addTweet } from '../reducers/tweets';
+
+
+
 
 function LastTweets() {
-
-    const [tweetsData, setTweetsData] = useState([]);
+    const dispatch = useDispatch();
+    //const [tweetsData, setTweetsData] = useState([]);
+    const tweetsData = useSelector((state) => state.tweets.value);
 
     useEffect(() => {
         fetch('http://localhost:3000/tweets')
         .then(response => response.json())
         .then(data => {
-            setTweetsData(data.data)
+            data.data.forEach((tweet) => {
+                dispatch(addTweet(tweet))
+            })
         })
     }, []);
 
