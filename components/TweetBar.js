@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-
+import styles from '../styles/TweetB.module.css'
 function TweetBar(props) {
     const dispatch = useDispatch();
     const [tweet, setTweet] = useState('');
@@ -24,8 +24,8 @@ function TweetBar(props) {
 
     return (
     <div>
-        <input onChange={(e) => setTweet(e.target.value)} value={tweet}/>
-        <button onClick={() => handleSubmit()}>Tweet</button>
+        <input onChange={(e) => setTweet(e.target.value)} value={tweet} className={styles.barreOk} placeholder="What's Up ?"/>
+        <button onClick={() => handleSubmit()} className={styles.barre}>Tweet</button>
         <span class="error">{error}</span>
     </div>
     )

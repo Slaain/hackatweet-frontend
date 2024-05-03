@@ -43,6 +43,7 @@ function Accueil() {
     };
 
     const signInUser = () => {
+        console.log("yo");
         fetch('http://localhost:3000/users/signins', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -50,11 +51,12 @@ function Accueil() {
         }).then(response => response.json())
             .then(data => {
                 if (data.result) {
-                    dispatch(login({ username: signInUsername, token: data.token }));
+                    dispatch(login({ username: signInUsername, token: data.data.token }));
+                    console.log(data.data.token)
                     setSignInUsername('');
                     setSignInPassword('');
                     setIsSignInModalOpen(false);
-                    // router.push('/home')
+                     router.push('/home')
                     console.log('vous etes connecté');
                 }
                 
@@ -78,26 +80,28 @@ function Accueil() {
     };
 
     return (
-        <>
-        <div className={styles.containerB}>
+        <div className={styles.tout}>
+        
             <Button type="primary" onClick={showSignUpModal} className={styles.signIn}>Sign Up</Button>
             <p>Already have an account?</p>
             <Button type="primary" onClick={showSignInModal} className={styles.signUp}>Sign In</Button>
-          
-            <Modal visible={isSignUpModalOpen} className={styles.containercChamps} onCancel={handleSignUpCancel} footer={null}>
+        <div className={styles.containerB}>
+            <Modal visible={isSignUpModalOpen} className={styles.containerB} onCancel={handleSignUpCancel} footer={null}>
+            
                 <input type="text" className={styles.champs} placeholder="Firstname" value={signUpFirstname} onChange={(e) => setSignUpFirstname(e.target.value)} />
                 <input type="text" className={styles.champs} placeholder="Username" value={signUpUsername} onChange={(e) => setSignUpUsername(e.target.value)} />
                 <input type="password" className={styles.champs} placeholder="Password" value={signUpPassword} onChange={(e) => setSignUpPassword(e.target.value)} />
                 <Button type="primary" className={styles.buttonzz} onClick={() => registerUser()}>Register</Button>
+                
             </Modal>
-            </div>
+        </div>
             <Modal visible={isSignInModalOpen} onCancel={handleSignInCancel} footer={null} >
                 <input type="text" placeholder="Username" value={signInUsername} className={styles.champs} onChange={(e) => setSignInUsername(e.target.value)} />
                 <input type="password" placeholder="Password" value={signInPassword} className={styles.champs} onChange={(e) => setSignInPassword(e.target.value)} />
-                <Button type="primary" onClick={() =>signInUser}>Sign In</Button>
+                <Button type="primary" onClick={() =>signInUser()}>Sign In</Button>
             </Modal>
             
-        </>
+        </div>
     );
 }
 
