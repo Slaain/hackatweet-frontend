@@ -1,16 +1,16 @@
-import styles from '../styles/Home.module.css';
+//import styles from '../styles/Home.module.css';
 import LastTweets from './LastTweets'
 import { Provider } from 'react-redux';
+import TweetBar from './TweetBar'
+
 
 
 function Homes() {
   return (
     <div>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
+        <h1>Home</h1>
+          <TweetBar />
           <LastTweets />
-        </h1>
-      </main>
     </div>
   );
 }
