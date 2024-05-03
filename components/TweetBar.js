@@ -1,18 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addTweet } from '../reducers/tweets';
 import { useState } from 'react';
 
-function TweetBar() {
+function TweetBar(props) {
     const dispatch = useDispatch();
     const [tweet, setTweet] = useState('');
     const [error, setError] = useState('');
-
-
-    const tweetPosted = (tweet) => {
-        dispatch(addTweet(tweet))
-        setTweet('')
-        setError('')
-    }
 
     const handleSubmit = () => {
         const data = {
@@ -26,7 +18,7 @@ function TweetBar() {
         })
         .then(response => response.json())
         .then(data => {
-            data.result ? tweetPosted(tweet) : setError('Error: could not post tweet')
+            data.result ? props.loadTweets() : setError('Error: could not post tweet')
         })
     }
 
