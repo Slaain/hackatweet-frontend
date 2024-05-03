@@ -83,7 +83,7 @@ function Accueil() {
             <p>Already have an account?</p>
             <Button type="primary" onClick={showSignInModal} className={styles.signUp}>Sign In</Button>
       </div>    
-            <Modal visible={isSignUpModalOpen} onCancel={handleSignUpCancel} footer={null}>
+            <Modal visible={isSignUpModalOpen} className={styles.containercChamps} onCancel={handleSignUpCancel} footer={null}>
                 <input type="text" className={styles.champs} placeholder="Firstname" value={signUpFirstname} onChange={(e) => setSignUpFirstname(e.target.value)} />
                 <input type="text" className={styles.champs} placeholder="Username" value={signUpUsername} onChange={(e) => setSignUpUsername(e.target.value)} />
                 <input type="password" className={styles.champs} placeholder="Password" value={signUpPassword} onChange={(e) => setSignUpPassword(e.target.value)} />
@@ -91,9 +91,9 @@ function Accueil() {
             </Modal>
     
             <Modal visible={isSignInModalOpen} onCancel={handleSignInCancel} footer={null} >
-                <input type="text" placeholder="Username" value={signInUsername} onChange={(e) => setSignInUsername(e.target.value)} />
-                <input type="password" placeholder="Password" value={signInPassword} onChange={(e) => setSignInPassword(e.target.value)} />
-                <Button type="primary" onClick={signInUser}>Sign In</Button>
+                <input type="text" placeholder="Username" value={signInUsername} className={styles.champs} onChange={(e) => setSignInUsername(e.target.value)} />
+                <input type="password" placeholder="Password" value={signInPassword} className={styles.champs} onChange={(e) => setSignInPassword(e.target.value)} />
+                <Button type="primary" onClick={() =>signInUser}>Sign In</Button>
             </Modal>
             
         </>

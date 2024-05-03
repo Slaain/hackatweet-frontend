@@ -20,7 +20,9 @@
     margin-top: 2% ;
         height: 59px;
         width: 236px;
+        border-radius: 10px;
   }
+
 .buttonzz{
     display: block;
     margin-top: 2% ;
